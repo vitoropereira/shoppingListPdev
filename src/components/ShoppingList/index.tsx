@@ -14,8 +14,7 @@ export function ShoppingList() {
       // .where("quantity", "==", 1)
       // .limit(2)
       .orderBy("quantity")
-      .startAfter(2)
-      .endBefore(5)
+
       .onSnapshot((querySnapshot) => {
         const data = querySnapshot.docs.map((doc) => {
           return {
