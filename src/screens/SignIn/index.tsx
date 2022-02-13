@@ -26,7 +26,7 @@ export function SignIn() {
         secureTextEntry
       />
 
-      <Button title="Entrar" onPress={() => { }} />
+      <Button title="Entrar" onPress={handleSignInAnonymously} />
 
       <Account>
         <ButtonText title="Recuperar senha" onPress={() => { }} />
