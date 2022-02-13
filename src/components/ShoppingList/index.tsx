@@ -11,7 +11,8 @@ export function ShoppingList() {
   useEffect(() => {
     const subscribe = firestore()
       .collection("products")
-      .where("quantity", "==", 1)
+      // .where("quantity", "==", 1)
+      .limit(2)
       .onSnapshot((querySnapshot) => {
         const data = querySnapshot.docs.map((doc) => {
           return {
