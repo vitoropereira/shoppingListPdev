@@ -26,6 +26,19 @@ export function ShoppingList() {
       .catch((error) => console.error(error));
   }, []);
 
+  // useEffect(() => {
+  //   firestore()
+  //     .collection("products")
+  //     .doc("my-custon-id")
+  //     .get()
+  //     .then((response) =>
+  //       console.log({
+  //         id: response.id,
+  //         ...response.data(),
+  //       })
+  //     );
+  // }, []);
+
   return (
     <FlatList
       data={products}
