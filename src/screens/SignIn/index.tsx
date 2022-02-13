@@ -18,7 +18,13 @@ export function SignIn() {
   function handleSignEmail() {
     auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => Alert.alert("Usuário criado com sucesso!"));
+      .then(() => Alert.alert("Usuário criado com sucesso!"))
+      .catch((error) => {
+        console.log(error.code);
+        if (error.code === "auth/email-already-in-use") {
+          Alert.alert("Email já cadastrado.");
+        }
+      });
   }
 
   return (
