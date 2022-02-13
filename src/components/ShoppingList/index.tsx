@@ -5,14 +5,13 @@ import firestore from "@react-native-firebase/firestore";
 import { styles } from "./styles";
 import { Product, ProductProps } from "../Product";
 
-import { shoppingListExample } from "../../utils/shopping.list.data";
-
 export function ShoppingList() {
   const [products, setProducts] = useState<ProductProps[]>([]);
 
   useEffect(() => {
     const subscribe = firestore()
       .collection("products")
+      .where("quantity", "==", 1)
       .onSnapshot((querySnapshot) => {
         const data = querySnapshot.docs.map((doc) => {
           return {
