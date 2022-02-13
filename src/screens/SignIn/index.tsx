@@ -6,6 +6,7 @@ import { ButtonText } from "../../components/ButtonText";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Alert } from "react-native";
+import { createNoSubstitutionTemplateLiteral } from "typescript";
 
 export function SignIn() {
   const [email, setEmail] = useState("");
@@ -27,6 +28,23 @@ export function SignIn() {
       });
   }
 
+  function handleSignInWithEmailAndPassword() {
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(({ user }) => {
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error.code);
+        if (
+          error.code === "auth/user-not-found" ||
+          error.code === "auth/wrong-password"
+        ) {
+          Alert.alert("Usuário não encontrado. (e-mail ou senha incorreto)");
+        }
+      });
+  }
+
   return (
     <Container>
       <Title>MyShopping</Title>
@@ -40,7 +58,7 @@ export function SignIn() {
 
       <Input placeholder="senha" secureTextEntry onChangeText={setPassword} />
 
-      <Button title="Entrar" onPress={handleSignInAnonymously} />
+      <Button title="Entrar" onPress={handleSignInWithEmailAndPassword} />
 
       <Account>
         <ButtonText title="Recuperar senha" onPress={() => {}} />
